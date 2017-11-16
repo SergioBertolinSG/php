@@ -11,6 +11,8 @@ RUN LC_ALL=en_US.UTF-8 add-apt-repository ppa:ondrej/php && \
   apt-get upgrade -y && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN php -m
+
 #ORACLE INSTALLATION
 #get the zips
 RUN mkdir /opt/oracle && \
@@ -35,7 +37,7 @@ ln -s /opt/oracle/instantclient_12_1/libocci.so.12.1 /opt/oracle/instantclient_1
 echo /opt/oracle/instantclient_12_1 > /etc/ld.so.conf.d/oracle-instantclient && \
 ldconfig
 
-RUN pecl install oci8
+RUN pecl install oci8-2.0.12
 
 #add extension to php.ini
 
